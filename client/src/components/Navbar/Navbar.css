@@ -1,0 +1,49 @@
+.navbar__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 12rem;
+}
+
+.navbar__logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar__title {
+  font: bold 72px var(--font-base);
+  color: var(--color-dark-blue);
+  text-align: center;
+  position: relative;
+}
+
+.navbar__title::after {
+  content: '';
+  width: 88%;
+  border: 1px solid;
+  position: absolute;
+
+  bottom: 0;
+  left: 6%;
+}
+
+.navbar__title span {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.navbar__menu {
+  width: 46px;
+  position: relative;
+  left: 46px;
+}
+
+.navbar__menu img {
+  cursor: pointer;
+}
+
+.navbar__menu img:hover {
+  transform: scale(0.96);
+}
