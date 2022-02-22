@@ -93,3 +93,19 @@
     font-size: 16px;
   }
 }
+
+@media screen and (max-width: 1350px) {
+  .main__container {
+    padding: 1.5rem 0 4rem;
+  }
+
+  .main__cards {
+    display: grid;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .main__cards div {
+    margin-top: 4rem;
+  }
+}

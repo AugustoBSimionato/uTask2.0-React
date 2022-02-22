@@ -162,3 +162,46 @@
   background-color: #fff;
   color: rgba(48, 113, 217, 1);
 }
+
+@media screen and (min-width: 1720px) {
+  .navbar__container {
+    padding: 3rem 12rem;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .navbar__menu {
+    left: 0;
+    justify-content: center;
+  }
+
+  .navbar__menu img {
+    float: right;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .navbar__container {
+    padding: 2rem 4rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .navbar__container {
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .navbar__logo {
+    display: none;
+  }
+
+  .navbar__menu {
+    margin-left: 20px;
+  }
+
+  .menu__container {
+    width: 350px;
+    padding: 1rem 1.5rem 2rem;
+  }
+}
