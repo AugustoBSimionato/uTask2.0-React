@@ -1,0 +1,58 @@
+.main__add-task div {
+  position: relative;
+  left: 20px;
+}
+
+.main__add-task button {
+  position: relative;
+  left: 36px;
+  display: flex;
+
+  border: 0;
+}
+
+.main__add-task .main__form {
+  width: 449px;
+  height: 45px;
+}
+
+.main__add-task .main__form input[type='text'] {
+  width: 424px;
+  height: 32px;
+
+  margin-top: 6px;
+  margin-left: 16px;
+}
+
+.main__add-icon {
+  cursor: pointer;
+}
+
+.main__add-icon:hover {
+  transform: scale(0.96);
+}
+
+@media screen and (max-width: 650px) {
+  .main__add-task {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .main__add-task div {
+    left: 0;
+  }
+
+  .main__add-task button {
+    left: 0;
+    margin-left: 15px;
+  }
+
+  .main__add-task .main__form {
+    width: 300px;
+  }
+
+  .main__add-task .main__form input[type='text'] {
+    width: 280px;
+    margin-right: 16px;
+  }
+}
