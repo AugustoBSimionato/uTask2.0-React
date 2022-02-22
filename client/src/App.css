@@ -1,0 +1,35 @@
+/*==== UTILITIES ====*/
+.flex__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom__button {
+  width: 105px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px var(--color-blue) solid;
+
+  background: var(--color-blue);
+  color: var(--color-white);
+  font: normal 22px var(--font-base);
+
+  cursor: pointer;
+  display: inline-block;
+}
+
+.custom__button:hover {
+  transform: scale(0.96);
+}
+
+.custom__card {
+  background-color: var(--color-white);
+  color: var(--color-gray);
+
+  border-radius: 14px;
+  border: 1px solid var(--color-grey-alt);
+
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
