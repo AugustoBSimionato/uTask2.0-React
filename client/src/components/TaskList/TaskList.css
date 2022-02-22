@@ -1,0 +1,14 @@
+.main__tasks-list {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.main__tasks-list::after {
+  content: '';
+  width: 100%;
+  border: 1px solid var(--color-white);
+  position: absolute;
+
+  top: 24px;
+  left: -2px;
+}

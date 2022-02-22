@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, AddForm } from './components';
+import { Navbar, AddForm, TaskList } from './components';
 
 import './App.css';
 
@@ -8,6 +8,10 @@ function App() {
 
   function addTask(task) {
     setTask([task, ...tasks]);
+  }
+
+  function removeTask(id) {
+    setTask(tasks.filter((task) => task.id !== id));
   }
 
   return (
@@ -19,6 +23,7 @@ function App() {
         <div className="main__cards">
           <div className="main__card-todo custom__card">
             <h2>To do</h2>
+            <TaskList tasks={tasks} removeTask={removeTask} />
           </div>
           <div className="main__card-doing custom__card">
             <h2>Doing</h2>

@@ -1,10 +1,18 @@
 import React from 'react';
 import './Task.css';
+import images from '../../constants/images';
 
-function Task() {
+function Task({ task, removeTask }) {
+  function handleRemoveClick() {
+    removeTask(task.id);
+  }
 
   return (
-    <div></div>
+    <li className="main__task">
+      {task.task}
+      <img src={images.minus} onClick={handleRemoveClick} alt="remove" />
+      <img src={images.moveArrow} alt="move arrow" />
+    </li>
   );
 }
 

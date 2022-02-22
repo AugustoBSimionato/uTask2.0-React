@@ -1,9 +1,14 @@
 import React from 'react';
+import Task from '../Task/Task';
 import './TaskList.css';
 
-function TaskList() {
+function TaskList({ tasks, removeTask }) {
   return (
-    <div></div>
+    <ul className="main__tasks-list">
+      {tasks.map((task) => (
+        <Task key={task.id} task={task} removeTask={removeTask} />
+      ))}
+    </ul>
   );
 }
 

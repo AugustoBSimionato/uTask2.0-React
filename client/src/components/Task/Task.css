@@ -1,0 +1,41 @@
+.main__task {
+  width: 100%;
+  padding: 0.8rem 0;
+  font-family: var(--font-alt);
+  font-size: 14px;
+  transition: 0.4s linear;
+  position: relative;
+
+  text-align: justify;
+  word-wrap: break-word;
+  align-items: center;
+}
+
+.main__task::after {
+  content: '';
+  width: 100%;
+  border: 1px solid var(--color-light-grey);
+  position: absolute;
+
+  left: 0;
+  bottom: -1px;
+}
+
+.main__task img {
+  opacity: 0;
+  margin-left: 12px;
+
+  cursor: pointer;
+  float: right;
+  transition: opacity 0.5s ease-out;
+}
+
+.main__task:hover img {
+  opacity: 1;
+}
+
+.main__card-done .main__task {
+  font-style: italic;
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.5);
+}
