@@ -7,12 +7,31 @@ function App() {
   const [tasks, setTask] = useState([]);
 
   function addTask(task) {
-    setTask([task, ...tasks]);
+    setTask([...tasks, { ...task, status: 'todo' }]);
   }
 
   function removeTask(id) {
     setTask(tasks.filter((task) => task.id !== id));
   }
+
+  function moveTask(id) {
+    const task = tasks.find(task => task.id === id);
+    if (task.status === 'doing')
+      task.status = 'done';
+    if (task.status === 'todo')
+      task.status = 'doing';
+    setTask((tasks) => [...tasks.filter((task) => task.id !== id), task]);
+  }
+
+  function returnTask(id) {
+    const task = tasks.find(task => task.id === id);
+    task.status = 'todo';
+    setTask((tasks) => [...tasks.filter((task) => task.id !== id), task]);
+  }
+
+  const todoTasks = tasks.filter((task) => task.status === 'todo');
+  const doingTasks = tasks.filter((task) => task.status === 'doing');
+  const doneTasks = tasks.filter((task) => task.status === 'done');
 
   return (
     <div>
@@ -23,15 +42,27 @@ function App() {
         <div className="main__cards">
           <div className="main__card-todo custom__card">
             <h2>To do</h2>
-            <TaskList tasks={tasks} removeTask={removeTask} />
+            <TaskList
+              tasks={todoTasks}
+              removeTask={removeTask}
+              moveTask={moveTask}
+            />
           </div>
           <div className="main__card-doing custom__card">
             <h2>Doing</h2>
-            <ul className="main__card-doing_list"></ul>
+            <TaskList
+              tasks={doingTasks}
+              removeTask={removeTask}
+              moveTask={moveTask}
+            />
           </div>
           <div className="main__card-done custom__card">
             <h2>Done</h2>
-            <ul className="main__card-done_list"></ul>
+            <TaskList
+              tasks={doneTasks}
+              removeTask={removeTask}
+              moveTask={returnTask}
+            />
           </div>
         </div>
       </div>
