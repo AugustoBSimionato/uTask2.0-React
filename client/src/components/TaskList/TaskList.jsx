@@ -2,7 +2,7 @@ import React from 'react';
 import Task from '../Task/Task';
 import './TaskList.css';
 
-function TaskList({ tasks, removeTask, moveTask }) {
+function TaskList({ tasks, removeTask, moveTask, imageSrc }) {
   return (
     <ul className="main__tasks-list">
       {tasks.map((task) => (
@@ -11,6 +11,7 @@ function TaskList({ tasks, removeTask, moveTask }) {
           task={task}
           removeTask={removeTask}
           moveTask={moveTask}
+          imageSrc={imageSrc}
         />
       ))}
     </ul>

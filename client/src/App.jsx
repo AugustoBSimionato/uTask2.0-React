@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, AddForm, TaskList } from './components';
+import images from './constants/images';
 
 import './App.css';
 
@@ -16,16 +17,14 @@ function App() {
 
   function moveTask(id) {
     const task = tasks.find(task => task.id === id);
-    if (task.status === 'doing')
-      task.status = 'done';
+
     if (task.status === 'todo')
       task.status = 'doing';
-    setTask((tasks) => [...tasks.filter((task) => task.id !== id), task]);
-  }
+    else if (task.status === 'doing')
+      task.status = 'done';
+    else
+      task.status = 'todo';
 
-  function returnTask(id) {
-    const task = tasks.find(task => task.id === id);
-    task.status = 'todo';
     setTask((tasks) => [...tasks.filter((task) => task.id !== id), task]);
   }
 
@@ -46,6 +45,7 @@ function App() {
               tasks={todoTasks}
               removeTask={removeTask}
               moveTask={moveTask}
+              imageSrc={images.moveArrow}
             />
           </div>
           <div className="main__card-doing custom__card">
@@ -54,6 +54,7 @@ function App() {
               tasks={doingTasks}
               removeTask={removeTask}
               moveTask={moveTask}
+              imageSrc={images.check}
             />
           </div>
           <div className="main__card-done custom__card">
@@ -61,7 +62,8 @@ function App() {
             <TaskList
               tasks={doneTasks}
               removeTask={removeTask}
-              moveTask={returnTask}
+              moveTask={moveTask}
+              imageSrc={images.returnButton}
             />
           </div>
         </div>
