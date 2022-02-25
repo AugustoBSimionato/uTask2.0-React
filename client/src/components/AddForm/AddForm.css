@@ -26,6 +26,7 @@
 
 .main__add-icon {
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .main__add-icon:hover {

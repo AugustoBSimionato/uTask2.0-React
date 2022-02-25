@@ -10,6 +10,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [src, setSrc] = React.useState(images.addBlack);
   const [checked, setChecked] = React.useState(false);
+  const [url, setUrl] = useState();
 
   function addTask(task) {
     setTask([...tasks, { ...task, status: 'todo' }]);
@@ -46,8 +47,18 @@ function App() {
     }
   };
 
+  const submitBackgroundImage = (e) => {
+    e.preventDefault();
+  }
+
+
+  const changeBackgroundImage = (e) => {
+    setUrl(e.target.value);
+  }
+
+
   return (
-    <div className={darkMode ? 'dark-mode' : 'light-mode'}>
+    <div className={darkMode ? 'dark-mode' : 'light-mode'} style={{ backgroundImage: "url(" + url + ")" }}>
       <div className='navbar__container'>
         <div className='navbar__logo'>
           <img src={images.logo} alt='app logo' />
@@ -78,23 +89,30 @@ function App() {
                   <div className='menu__background'>
                     <h3>Plano de Fundo</h3>
                   </div>
-                  <form>
+                  <form onSubmit={submitBackgroundImage}>
                     <div className='menu__background-form flex__center'>
-                      <input type='url' id='background__url' placeholder='Url' />
+                      <input
+                        type='url'
+                        id='background__url'
+                        placeholder='Url'
+                        value={url}
+                        onChange={changeBackgroundImage}
+                      />
+                    </div>
+                    <div className='menu__buttons'>
+                      <input
+                        type='reset'
+                        value='Limpar'
+                        className='menu__button-clear custom__button'
+                        onClick={() => setUrl(() => '')}
+                      />
+                      <input
+                        type='submit'
+                        value='Aplicar'
+                        className='menu__button-apply custom__button'
+                      />
                     </div>
                   </form>
-                  <div className='menu__buttons'>
-                    <input
-                      type='reset'
-                      value='Limpar'
-                      className='menu__button-clear custom__button'
-                    />
-                    <input
-                      type='submit'
-                      value='Aplicar'
-                      className='menu__button-apply custom__button'
-                    />
-                  </div>
                 </div>
               </div>
             </>

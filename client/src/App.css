@@ -34,6 +34,13 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.dark-mode,
+.light-mode {
+  height: 100vh;
+  background: no-repeat;
+  background-size: 100% 100%;
+}
+
 /*==== NAVBAR ====*/
 .navbar__container {
   width: 100%;
@@ -239,8 +246,7 @@
 
 /*==== DARK MODE ====*/
 .dark-mode {
-  height: 100vh;
-  background: var(--color-black-alt);
+  background-color: var(--color-black-alt);
 }
 
 .dark-mode .custom__card {
@@ -287,10 +293,6 @@
 .dark-mode .menu__button-clear {
   background-color: var(--color-gray-alt);
   color: var(--color-white);
-}
-
-.dark-mode .main__add-icon {
-  background-color: rgba(0, 0, 0, 0);
 }
 
 .dark-mode input:-webkit-autofill,
@@ -368,7 +370,8 @@
     margin-top: 4rem;
   }
 
-  .dark-mode {
+  .dark-mode,
+  .light-mode {
     height: 100%;
   }
 }
@@ -376,6 +379,12 @@
 @media screen and (max-width: 1150px) {
   .navbar__container {
     padding: 2rem 4rem;
+  }
+
+  .dark-mode,
+  .light-mode {
+    background-repeat: repeat;
+    background-size: 100%;
   }
 }
 
