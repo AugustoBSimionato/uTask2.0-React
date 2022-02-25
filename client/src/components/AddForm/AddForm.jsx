@@ -3,7 +3,7 @@ import images from '../../constants/images';
 import './AddForm.css';
 import { v4 } from 'uuid';
 
-function AddForm({ addTask }) {
+function AddForm({ addTask, addSrc }) {
   const [task, setTask] = useState({
     id: '',
     task: ''
@@ -33,7 +33,7 @@ function AddForm({ addTask }) {
         />
       </div>
       <button type="submit" className="main__add-icon">
-        <img src={images.addBlack} alt="" />
+        <img src={addSrc} alt="" />
       </button>
     </form>
   );

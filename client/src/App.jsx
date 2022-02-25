@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Navbar, AddForm, TaskList } from './components';
+import { AddForm, TaskList } from './components';
 import images from './constants/images';
 
 import './App.css';
 
 function App() {
   const [tasks, setTask] = useState([]);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [src, setSrc] = React.useState(images.addBlack);
+  const [checked, setChecked] = React.useState(false);
 
   function addTask(task) {
     setTask([...tasks, { ...task, status: 'todo' }]);
@@ -32,12 +36,75 @@ function App() {
   const doingTasks = tasks.filter((task) => task.status === 'doing');
   const doneTasks = tasks.filter((task) => task.status === 'done');
 
+  const toggleAddSrc = () => {
+    let addSrc = src;
+
+    if (addSrc === images.addBlack) {
+      setSrc(images.addBlue);
+    } else {
+      setSrc(images.addBlack);
+    }
+  };
+
   return (
-    <div>
-      <Navbar />
+    <div className={darkMode ? 'dark-mode' : 'light-mode'}>
+      <div className='navbar__container'>
+        <div className='navbar__logo'>
+          <img src={images.logo} alt='app logo' />
+        </div>
+        <h1 className='navbar__title flex__center'>uTask&nbsp;<span>2.0</span></h1>
+        <div className='navbar__menu'>
+          <img src={images.config} alt='config icon' onClick={() => setToggleMenu(true)} />
+
+          {toggleMenu && (
+            <>
+              <div className='menu__overlay-back' onClick={() => setToggleMenu(false)} />
+              <div className='menu__container custom__card'>
+                <h2>Configuração</h2>
+                <div className='menu__functions'>
+                  <div className='menu__dark-mode'>
+                    <h3>Dark Mode</h3>
+                    <label className='custom__switch'>
+                      <input
+                        type='checkbox'
+                        id='checkbox'
+                        onChange={() => { setDarkMode(!darkMode), setChecked(!checked) }}
+                        defaultChecked={checked}
+                        onClick={toggleAddSrc}
+                      />
+                      <span className='custom__check'></span>
+                    </label>
+                  </div>
+                  <div className='menu__background'>
+                    <h3>Plano de Fundo</h3>
+                  </div>
+                  <form>
+                    <div className='menu__background-form flex__center'>
+                      <input type='url' id='background__url' placeholder='Url' />
+                    </div>
+                  </form>
+                  <div className='menu__buttons'>
+                    <input
+                      type='reset'
+                      value='Limpar'
+                      className='menu__button-clear custom__button'
+                    />
+                    <input
+                      type='submit'
+                      value='Aplicar'
+                      className='menu__button-apply custom__button'
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
 
       <div className="main__container">
-        <AddForm addTask={addTask} />
+        <AddForm addTask={addTask}
+          addSrc={src} />
         <div className="main__cards">
           <div className="main__card-todo custom__card">
             <h2>To do</h2>
