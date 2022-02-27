@@ -9,6 +9,11 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-const CONNECTION_URL = 'mongodb+srv://AugustoBS:<password>@clusterutask.o0ouc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = 'mongodb+srv://AugustoBS:K5z4SKFnpFLvC24@clusterutask.o0ouc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const PORT = process.env.PORT || 5000;
 
-// https://www.mongodb.com/cloud/atlas
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log('Server rodando na porta: ${PORT}')))
+  .catch((error) => console.log(error.messagem));
+
+mongoose.set('useFindAndModify', false);
