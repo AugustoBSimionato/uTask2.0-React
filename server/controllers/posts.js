@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import express from 'express';
 
 import PostMessage from '../models/postMessage.js';
@@ -31,5 +32,15 @@ export const createPost = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const deletePost = async (req, res) => {
+  const { id } = req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Sem task com esse id');
+
+  await PostMessage.findByIdAndRemove(id);
+
+  res.json({ message: 'Task excluída com sucesso' });
+}
 
 export default router;
