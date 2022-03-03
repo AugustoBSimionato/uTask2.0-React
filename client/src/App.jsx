@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AddForm, TaskList } from './components';
 import { useDispatch } from 'react-redux';
 
-import { getPosts } from './actions/posts';
+import { getPosts, createPost } from './actions/posts';
 import images from './constants/images';
 
 import './App.css';
@@ -18,6 +18,7 @@ function App() {
 
   function addTask(task) {
     setTask([...tasks, { ...task, status: 'todo' }]);
+    dispatch(createPost(task));
   }
 
   function removeTask(id) {

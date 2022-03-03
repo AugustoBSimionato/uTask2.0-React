@@ -15,11 +15,12 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const { task, id } = req.body;
+  const { task, id, status } = req.body;
 
   const newPostMessage = new PostMessage({
     task,
-    id
+    id,
+    status
   });
 
   try {

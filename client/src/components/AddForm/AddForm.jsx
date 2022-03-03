@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import './AddForm.css';
 import { v4 } from 'uuid';
 
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../actions/posts';
-
 function AddForm({ addTask, addSrc }) {
-  const dispatch = useDispatch();
 
   const [task, setTask] = useState({
     task: '',
-    id: ''
+    id: '',
+    status: 'todo'
   });
 
   function handleTaskInputChange(e) {
@@ -19,7 +16,6 @@ function AddForm({ addTask, addSrc }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createPost(task));
     if (task.task.trim()) {
       addTask({ ...task, id: v4() });
       setTask({ ...task, task: '' });
