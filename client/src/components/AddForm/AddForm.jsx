@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import images from '../../constants/images';
 import './AddForm.css';
 import { v4 } from 'uuid';
 
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../actions/posts';
+
 function AddForm({ addTask, addSrc }) {
+  const dispatch = useDispatch();
+
   const [task, setTask] = useState({
-    id: '',
-    task: ''
+    task: '',
+    id: ''
   });
 
   function handleTaskInputChange(e) {
     setTask({ ...task, task: e.target.value });
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(createPost(task));
     if (task.task.trim()) {
       addTask({ ...task, id: v4() });
       setTask({ ...task, task: '' });
@@ -22,7 +27,7 @@ function AddForm({ addTask, addSrc }) {
   }
 
   return (
-    <form className="main__add-task flex__center" onSubmit={handleSubmit}>
+    <form className="main__add-task flex__center" autoComplete='off' onSubmit={handleSubmit}>
       <div className="main__form custom__card">
         <input
           type="text"

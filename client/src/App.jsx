@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AddForm, TaskList } from './components';
+import { useDispatch } from 'react-redux';
+
+import { getPosts } from './actions/posts';
 import images from './constants/images';
 
 import './App.css';
@@ -11,6 +14,7 @@ function App() {
   const [src, setSrc] = React.useState(images.addBlack);
   const [checked, setChecked] = React.useState(false);
   const [url, setUrl] = useState();
+  const dispatch = useDispatch();
 
   function addTask(task) {
     setTask([...tasks, { ...task, status: 'todo' }]);
@@ -56,6 +60,9 @@ function App() {
     setUrl(e.target.value);
   }
 
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <div className={darkMode ? 'dark-mode' : 'light-mode'} style={{ backgroundImage: "url(" + url + ")" }}>

@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
   task: String,
+  id: String
 });
 
-const postMessage = mongoose.model('PostMessage', postSchema);
+var PostMessage = mongoose.model('PostMessage', postSchema);
 
-export default postMessage;
+export default PostMessage;
