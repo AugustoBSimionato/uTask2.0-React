@@ -3,8 +3,8 @@
 ###### Projeto feito usando a stack MERN e para o deploy foram utilizados os sites Heroku e Netlify
 
 ## Nomes:
- - Augusto Simionato (Trainee)
- - Victor Motta (Trainee)
+ - Augusto Simionato
+ - Victor Motta
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/72254418/156835530-b80df291-361e-4b33-b08d-9f4fe480e13c.png" />
