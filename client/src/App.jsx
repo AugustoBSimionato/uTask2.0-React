@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { AddForm, TaskList } from './components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getPosts, createPost } from './actions/posts';
+import { getTasks, createTask, updateTask, deleteTask } from './actions/tasks';
 import images from './constants/images';
 
 import './App.css';
 
 function App() {
-  const [tasks, setTask] = useState([]);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [src, setSrc] = React.useState(images.addBlack);
   const [checked, setChecked] = React.useState(false);
   const [url, setUrl] = useState();
+  const [id, setId] = useState(null);
   const dispatch = useDispatch();
 
+  const tasks = useSelector((state) => state.tasks);
+  const task = useSelector((state) => id ? state.tasks.find((t) => t._id === id) : null);
+
   function addTask(task) {
-    setTask([...tasks, { ...task, status: 'todo' }]);
-    dispatch(createPost(task));
+    dispatch(createTask(task));
   }
 
-  function removeTask(id) {
-    setTask(tasks.filter((task) => task.id !== id));
+  function removeTask() {
+    dispatch(deleteTask(id))
   }
 
-  function moveTask(id) {
-    const task = tasks.find(task => task.id === id);
-
+  function moveTask() {
     if (task.status === 'todo')
       task.status = 'doing';
     else if (task.status === 'doing')
@@ -35,7 +35,8 @@ function App() {
     else
       task.status = 'todo';
 
-    setTask((tasks) => [...tasks.filter((task) => task.id !== id), task]);
+    dispatch(updateTask(id, task))
+    setId(null);
   }
 
   const todoTasks = tasks.filter((task) => task.status === 'todo');
@@ -56,14 +57,13 @@ function App() {
     e.preventDefault();
   }
 
-
   const changeBackgroundImage = (e) => {
     setUrl(e.target.value);
   }
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    dispatch(getTasks());
+  }, [id, dispatch]);
 
   return (
     <div className={darkMode ? 'dark-mode' : 'light-mode'} style={{ backgroundImage: "url(" + url + ")" }}>
@@ -138,6 +138,7 @@ function App() {
               tasks={todoTasks}
               removeTask={removeTask}
               moveTask={moveTask}
+              setId={setId}
               imageSrc={images.moveArrow}
             />
           </div>
@@ -147,6 +148,7 @@ function App() {
               tasks={doingTasks}
               removeTask={removeTask}
               moveTask={moveTask}
+              setId={setId}
               imageSrc={images.check}
             />
           </div>
@@ -156,6 +158,7 @@ function App() {
               tasks={doneTasks}
               removeTask={removeTask}
               moveTask={moveTask}
+              setId={setId}
               imageSrc={images.returnButton}
             />
           </div>

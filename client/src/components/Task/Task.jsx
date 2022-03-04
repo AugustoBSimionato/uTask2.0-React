@@ -2,20 +2,12 @@ import React from 'react';
 import './Task.css';
 import images from '../../constants/images';
 
-function Task({ task, removeTask, moveTask, imageSrc }) {
-  function RemoveFunction() {
-    removeTask(task.id);
-  }
-
-  function MoveFunction() {
-    moveTask(task.id);
-  }
-
+function Task({ task, removeTask, moveTask, setId, imageSrc }) {
   return (
-    <li className="main__task">
+    <li className="main__task" onMouseOver={() => { setId(task._id) }}>
       {task.task}
-      <img src={images.minus} onClick={RemoveFunction} alt="remove" />
-      <img src={imageSrc} onClick={MoveFunction} alt="move arrow" />
+      <img src={images.minus} onClick={removeTask} alt="remove" />
+      <img src={imageSrc} onClick={moveTask} alt="move arrow" />
     </li>
   );
 }

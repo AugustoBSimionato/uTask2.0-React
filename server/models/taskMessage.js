@@ -6,6 +6,6 @@ const postSchema = mongoose.Schema({
   status: String
 });
 
-var PostMessage = mongoose.model('PostMessage', postSchema);
+var TaskMessage = mongoose.model('TaskMessage', postSchema);
 
-export default PostMessage;
+export default TaskMessage;
