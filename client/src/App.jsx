@@ -35,8 +35,6 @@ function App() {
     else
       task.status = 'todo';
 
-    dispatch(deleteTask(id))
-    dispatch(createTask(task))
     dispatch(updateTask(id, task))
   }
 
