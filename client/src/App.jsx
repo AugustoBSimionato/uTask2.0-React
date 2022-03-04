@@ -20,7 +20,7 @@ function App() {
   const task = useSelector((state) => id ? state.tasks.find((t) => t._id === id) : null);
 
   function addTask(task) {
-    dispatch(createTask(task));
+    dispatch(createTask(task))
   }
 
   function removeTask() {
@@ -35,8 +35,9 @@ function App() {
     else
       task.status = 'todo';
 
+    dispatch(deleteTask(id))
+    dispatch(createTask(task))
     dispatch(updateTask(id, task))
-    setId(null);
   }
 
   const todoTasks = tasks.filter((task) => task.status === 'todo');
