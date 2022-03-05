@@ -1,6 +1,7 @@
 # uTask2.0-React
 
 ###### Projeto feito usando a stack MERN e para o deploy foram utilizados os sites Heroku e Netlify
+###### Link da aplicação: https://utask-react.netlify.app/
 
 ## Nomes:
  - Augusto Simionato
